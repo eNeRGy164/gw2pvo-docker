@@ -1,4 +1,4 @@
-FROM alpine:3.8
+FROM alpine:3.12
 
 RUN apk add --no-cache python3 tzdata && \
     python3 -m ensurepip && \
@@ -7,6 +7,7 @@ RUN apk add --no-cache python3 tzdata && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache && \
+    pip install https://github.com/sffjunkie/astral/archive/1.10.1.tar.gz && \
     pip install https://github.com/markruys/gw2pvo/releases/download/1.3.0/gw2pvo-1.3.0.tar.gz
 
 ENV GW_STATION_ID="" \
